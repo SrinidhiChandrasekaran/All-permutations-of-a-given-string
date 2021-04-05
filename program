@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+void combinations(string s, int start, int end) {
+    //base case
+    if(start==end) {
+        cout<<s<<endl;
+    }
+    //recurse
+    else {
+        for(int i=start; i<=end; i++) {
+            //fix a single character iteratively, here we have ith character of the string
+            swap(s[start], s[i]);
+            //permute the other characters
+            combinations(s, start+1, end);
+            //backtrack to the original string so that another character can  be fixed
+            swap(s[start], s[i]);
+        }
+    }
+}
+
+int main()
+{
+    string s = "History";
+    combinations(s, 0, s.length()-1);
+   
+   return 0;
+}
